@@ -1,0 +1,9 @@
+
+/*
+Por defecto se debe de usar esta clase para se se vea el mapa
+*/
+.leaflet-container {
+    width: 50vw;
+    height:70vh;
+
+  }
