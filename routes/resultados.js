@@ -1,20 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const pool=require('./db')
+const consult=require('./consult')
+const db = require('./db')
 
 /**
  * 
+ * select "Alcaldia",count(*) from "Tabla_A" group by "Alcaldia";
+ * 
+ * select "Alcaldia",count(*) from "Tabla_A" group by "Alcaldia" order by "Alcaldia" asc;
+ * 
+ * 
+ * 
+ * 
  */
-router.get('/', async function(req, res) {
-  try {
-    const result=await pool.query("SELECT \"Alcaldia\", \"Delito\", count(\"Delito\") as Cantidad FROM \"Tabla_A\" GROUP BY \"Alcaldia\",\"Delito\"")
-
-    // console.log(result.rows)
-    console.log("> /resultados")
-    res.json(result.rows)
-  } catch (error) {
-    console.log(error)
-  }
+router.get('/',async function(req, res) {
+  const result = await db.query(`select "Alcaldia",count(*) from "Tabla_A" group by "Alcaldia" order by "Alcaldia" asc`)
+  res.json(result.rows)
+  
 });
 
 module.exports = router;

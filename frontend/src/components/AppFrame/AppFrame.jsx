@@ -13,10 +13,10 @@ const AppFrame = ({children}) => {
       justifyContent="center"
       alignItems="strech"
     >
-      <Grid item spacing={1}>
+      <Grid item >
             <Menu/>
       </Grid>
-      <Grid item spacing={1}>
+      <Grid item >
       <Box sx={{border:0}}>
         <Paper elevation={3}>{children}</Paper>
             

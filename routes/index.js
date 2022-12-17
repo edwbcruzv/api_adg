@@ -1,20 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const pool=require('./db')
-
+const db =require('./db')
 
 /**
  * 
  */
-router.get('/', async function(req, res) {
-  try {
-    const result=await pool.query("SELECT \"Delito\",\"Latitud\",\"Longitud\" FROM \"Tabla_A\" ")
-    // console.log(result.rows)
-    console.log("> /index")
-    res.json(result.rows)
-  } catch (error) {
-    console.log(error)
-  }
+router.get('/',async function(req, res) {
+  const result=await db.query("SELECT \"Delito\",\"Latitud\",\"Longitud\" FROM \"Tabla_A\" ")
+  res.json(result.rows)
 });
 
 module.exports = router;

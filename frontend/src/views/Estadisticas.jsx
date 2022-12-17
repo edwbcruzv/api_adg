@@ -1,20 +1,30 @@
-import React,{useState,useEffect} from 'react'
-import axios from 'axios'
+import React from 'react'
 import AppFrame from '../components/AppFrame/AppFrame'
 import Grid from '@mui/material/Grid'
 import Grafica from '../components/Grafica'
 import GraficaLinea from '../components/GraficaLinea'
 import useFetch from '../Hooks/useFetch'
-import {faker} from '@faker-js/faker';
+
 
 
 const Estadisticas = () => {
   let url=" http://localhost:4000/estadisticas"
-   const {Data,IsPending,Error}=useFetch(url)
+   const {Data,IsPending}=useFetch(url)
    console.log(Data)
+
+   if(IsPending){
+
+   }else{
+
+     const Alcaldias=Object.keys(Data)
+    const Info=Object.values(Data)
+     console.log(Alcaldias)
+     console.log(Info)
+    }
 
   return (
     <AppFrame>
+
       <Grid
         container
         spacing={2}
@@ -23,7 +33,12 @@ const Estadisticas = () => {
         alignItems="center"
         alignContent="stretch"
         wrap="wrap"
-      >
+        >
+        
+        {
+            IsPending?("Cargando"):
+            ("Renderizado")
+        }
         <Grid item>
           <Grafica />
         </Grid>
@@ -40,8 +55,6 @@ const Estadisticas = () => {
           <GraficaLinea/>
         </Grid>
 
-        
-        
       </Grid>
     </AppFrame>
   )

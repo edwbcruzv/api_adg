@@ -8,8 +8,14 @@ const pool = new Pool({
   port: 5432,
 })
 
-pool.query('SELECT NOW()', (err, res) => {
-  console.log("Error:",err,"\nRespuesta:",res.rows[0])
-})
+pool.connect((err)=>{
+  if (err) {
+    console.error("Error al conectarse a postgres",err.stack)
+  } else {
+    console.log("Conectado a postgres")
+  }
+}) 
 
-module.exports = pool
+module.exports = {
+  query:(text)=>pool.query(text)
+}
